@@ -14,5 +14,11 @@ pipeline {
                 sh './build/test_game'
             }
         }
+	stage('Deploy') {
+            steps {
+                sh 'tar -czf casino_game.tar.gz build/casino_game'
+                archiveArtifacts artifacts: 'casino_game.tar.gz', fingerprint: true
+            }
+        }
     }
 }
